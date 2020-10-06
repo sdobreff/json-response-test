@@ -1,0 +1,25 @@
+{
+    "name": "sdobreff/json-response-test",
+    "description": "Test JSON response against provided pattern in file",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+    {
+        "name": "Stoil Dobrev",
+        "email": "sdobreff@gmail.com"
+    }],
+    "minimum-stability": "stable",
+    "autoload":
+    {
+        "psr-4":
+        {
+            "JsonResponseTest\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^7.3",
+        "phpunit/phpunit": "^7",
+        "coduo/php-matcher": "^5.0",
+        "guzzlehttp/guzzle": "6.*"
+    }
+}
