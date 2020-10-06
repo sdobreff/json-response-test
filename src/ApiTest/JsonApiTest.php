@@ -296,6 +296,7 @@ class JsonApiTest extends \PHPUnit\Framework\TestCase {
                 [
                     'allow_redirects' => true,
                     'cookies' => true,
+                    'http_errors' => false,
                 ]
             );
         }
