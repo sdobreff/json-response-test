@@ -1,5 +1,13 @@
 # json-response-test
 
+JsonApiTest is a PHPUnit TestCase that will make your life as a PHP API developer much easier.
+
+Thanks to [PHP-Matcher](https://github.com/coduo/php-matcher) you can, test you API JSON responses against provided schema.
+
+## Sandbox
+
+You can use [PHP-Matcher Sandbox](https://php-matcher.norbert.tech/), to create your JSON schema.
+
 ## Installation
 
 Assuming you already have Composer installed globally:
