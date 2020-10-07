@@ -112,6 +112,7 @@ namespace JsonResponseTest\APITest;
 use GuzzleHttp\Client;
 use Coduo\PHPMatcher\PHPMatcher;
 use Webmozart\Assert\Assert;
+use JsonResponseTest\APITest\JSONBacktrace;
 
 class JsonApiTest extends \PHPUnit\Framework\TestCase {
 
@@ -254,7 +255,11 @@ class JsonApiTest extends \PHPUnit\Framework\TestCase {
         $result = $matcher->match( $actualResponse, $expectedResponse );
 
         if ( ! $result ) {
-            self::fail( 'JSON pattern does not match provided response' );
+            self::fail(
+                'JSON pattern does not match provided response' . "\n" .
+                'Check first that you properly set the @...@ wild card (or if you set it at all)' . "\n" .
+                'Also you could try https://php-matcher.norbert.tech/ for some live testing' . "\n" . (string) $matcher->backtrace()
+            );
         }
     }
 
@@ -265,7 +270,7 @@ class JsonApiTest extends \PHPUnit\Framework\TestCase {
      */
     protected function getMatcher(): PHPMatcher {
         if ( null == $this->matcher ) {
-            $this->matcher = new PHPMatcher();
+            $this->matcher = new PHPMatcher( new JSONBacktrace() );
         }
         return $this->matcher;
     }
