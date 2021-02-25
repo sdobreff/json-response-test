@@ -6,7 +6,7 @@ declare(strict_types=1);
  *
  * @package   API JSON
  * @author    Stoil Dobreff
- * @copyright Copyright © 2020
+ * @copyright Copyright © 2021
  */
 
 /**
@@ -193,11 +193,13 @@ class JsonApiTest extends \PHPUnit\Framework\TestCase {
      *
      * @return void
      */
-    protected function assertResponse( $response, string $filename, int $statusCode = 200 ): void {
+    protected function assertResponse( $response, string $filename = '', int $statusCode = 200 ): void {
         self::assertEquals( $statusCode, $response->getStatusCode() );
 
-        $this->assertJsonHeader( $response );
-        $this->assertJsonResponseContent( $response, $filename );
+        if ( '' != trim( $filename ) ) {
+            $this->assertJsonHeader( $response );
+            $this->assertJsonResponseContent( $response, $filename );
+        }
     }
 
     /**
@@ -249,7 +251,7 @@ class JsonApiTest extends \PHPUnit\Framework\TestCase {
 
         $expectedResponse = trim( $contents );
 
-        $matcher = $this->getMatcher();
+        $matcher        = $this->getMatcher();
         $actualResponse = trim( $response->getBody()->getContents() );
 
         $result = $matcher->match( $actualResponse, $expectedResponse );
@@ -300,8 +302,8 @@ class JsonApiTest extends \PHPUnit\Framework\TestCase {
             $this->client = new Client(
                 [
                     'allow_redirects' => true,
-                    'cookies' => true,
-                    'http_errors' => false,
+                    'cookies'         => true,
+                    'http_errors'     => false,
                 ]
             );
         }
