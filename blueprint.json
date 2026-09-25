@@ -1,0 +1,36 @@
+{
+	"$schema": "https://playground.wordpress.net/blueprint-schema.json",
+	"meta": {
+		"title": "WP 2FA — Two-factor authentication for WordPress",
+		"description": "Try the WP 2FA setup wizard and its 2FA policies in a throwaway WordPress. You are signed in as an administrator and nothing is saved.",
+		"author": "melapress",
+		"categories": [
+			"Security"
+		]
+	},
+	"login": true,
+	"landingPage": "/wp-admin/admin.php?page=wp-2fa-policies",
+	"preferredVersions": {
+		"php": "8.2",
+		"wp": "latest"
+	},
+	"features": {
+		"networking": true
+	},
+	"siteOptions": {
+		"blogname": "WP 2FA demo"
+	},
+	"steps": [
+		{
+			"step": "installPlugin",
+			"pluginData": {
+				"resource": "wordpress.org/plugins",
+				"slug": "wp-2fa"
+			},
+			"options": {
+				"activate": true
+			},
+			"ifAlreadyInstalled": "skip"
+		}
+	]
+}
